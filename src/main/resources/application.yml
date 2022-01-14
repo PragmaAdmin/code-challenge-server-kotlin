@@ -1,0 +1,7 @@
+server:
+  port: 8081
+  error:
+    whitelabel:
+      enabled: true
+client:
+  url: https://temperature-sensor-service.herokuapp.com/sensor/%s

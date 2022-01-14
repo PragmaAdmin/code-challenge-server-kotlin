@@ -31,7 +31,7 @@ internal class TemperatureControllerTests {
     fun shouldReturnTemperaturesSuccessfully() {
         val expected = arrayListOf(Temperature("1", "name", 1, TemperatureStatus.ALL_GOOD), Temperature("2", "name", 2, TemperatureStatus.TOO_LOO), Temperature("3", "name", 3, TemperatureStatus.TOO_HIGH))
 
-        `when`(service.getTemperatures()).thenReturn(expected)
+        `when`(service.getTemperaturesFromCache()).thenReturn(expected)
 
         this.mockMvc.perform(MockMvcRequestBuilders.get("/temperature"))
                 .andExpect(MockMvcResultMatchers.status().isOk)

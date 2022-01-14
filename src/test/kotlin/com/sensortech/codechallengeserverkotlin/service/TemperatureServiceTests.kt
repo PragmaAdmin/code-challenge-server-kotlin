@@ -24,7 +24,7 @@ internal class TemperatureServiceTests {
     fun shouldReturnAllTemperaturesSuccessfully(){
         `when`(repository.getTemperature(anyString())).thenReturn(Sensor("", Math.random()))
 
-        val temperatures = service.getTemperatures()
+        val temperatures = service.getTemperaturesFromCache()
 
         assertEquals(6, temperatures.size)
     }
@@ -35,7 +35,7 @@ internal class TemperatureServiceTests {
 
         `when`(repository.getTemperature(anyString())).thenReturn(Sensor("", temperature))
 
-        val temperatures = service.getTemperatures()
+        val temperatures = service.getTemperaturesFromCache()
 
         assertEquals(TemperatureStatus.TOO_LOO, temperatures[0].status)
     }
@@ -46,7 +46,7 @@ internal class TemperatureServiceTests {
 
         `when`(repository.getTemperature(anyString())).thenReturn(Sensor("", temperature))
 
-        val temperatures = service.getTemperatures()
+        val temperatures = service.getTemperaturesFromCache()
 
         assertEquals(TemperatureStatus.TOO_HIGH, temperatures[1].status)
     }
@@ -57,7 +57,7 @@ internal class TemperatureServiceTests {
 
         `when`(repository.getTemperature(anyString())).thenReturn(Sensor("", temperature))
 
-        val temperatures = service.getTemperatures()
+        val temperatures = service.getTemperaturesFromCache()
 
         assertEquals(TemperatureStatus.ALL_GOOD, temperatures[2].status)
     }
@@ -66,7 +66,7 @@ internal class TemperatureServiceTests {
     fun shouldReturnEmptyListWhenWeCanNotGetTheSensorData(){
         `when`(repository.getTemperature(anyString())).thenReturn(null)
 
-        val temperatures = service.getTemperatures()
+        val temperatures = service.getTemperaturesFromCache()
 
         assertEquals(0, temperatures.size)
     }

@@ -38,7 +38,7 @@ class TemperatureController(
     @GetMapping
     fun getTemperatures(): ResponseEntity<TemperaturesResponse> {
         logger.info("Get Temperatures")
-        val response = TemperaturesResponse(service.getTemperatures())
+        val response = TemperaturesResponse(service.getTemperaturesFromCache())
         logger.info("Response: {}", response)
 
         return ResponseEntity.ok(response)

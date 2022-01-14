@@ -5,6 +5,8 @@ import com.sensortech.codechallengeserverkotlin.service.model.Temperature
 import com.sensortech.codechallengeserverkotlin.service.model.TemperatureStatus
 import com.sensortech.codechallengeserverkotlin.repository.SensorRepository
 import com.sensortech.codechallengeserverkotlin.repository.model.Sensor
+import org.springframework.cache.annotation.CachePut
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,7 +14,17 @@ class TemperatureService (
         val repository: SensorRepository
         ){
 
-    fun getTemperatures(): ArrayList<Temperature> {
+    @Cacheable("temperatures", )
+    fun getTemperaturesFromCache(): ArrayList<Temperature> {
+        return getTemperatures()
+    }
+
+    @CachePut("temperatures")
+    fun putTemperaturesInTheCache(): ArrayList<Temperature> {
+        return getTemperatures()
+    }
+
+    private fun getTemperatures(): ArrayList<Temperature> {
         val temperatures = arrayListOf<Temperature>()
 
         Product.values().forEach {
@@ -22,7 +34,6 @@ class TemperatureService (
                 temperatures.add(temperature)
             }
         }
-
         return temperatures
     }
 
