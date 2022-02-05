@@ -1,4 +1,4 @@
-package com.sensortech.codechallengeserverkotlin.model
+package com.sensortech.codechallengeserverkotlin.repository.model
 
 data class Sensor (
     val id: String,
