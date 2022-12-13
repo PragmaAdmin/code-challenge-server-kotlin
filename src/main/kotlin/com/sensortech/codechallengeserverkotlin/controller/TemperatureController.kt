@@ -21,7 +21,7 @@ class TemperatureController(
     @GetMapping("/{id}")
     fun index(@PathVariable id: String): ResponseEntity<Sensor> {
 
-        val url = String.format("https://temperature-sensor-service.herokuapp.com/sensor/%s", id)
+        val url = String.format("https://hasydbj5c4gpa2oozfpjpc677a0hxuob.lambda-url.ap-southeast-2.on.aws/sensor/%s", id)
 
         val response: ResponseEntity<Sensor> = restTemplate.getForEntity(url, Sensor::class.java)
 
